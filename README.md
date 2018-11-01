@@ -3,4 +3,8 @@ A Docker image that can be used to generate UML diagrams from Swagger definition
 
 Run with:
 
-docker run --rm -v $PWD:/data ngeor/docker-swagger-to-diagram swagger2png.sh swagger.yml diagram.png
+```bash
+docker run --rm -v $PWD:/data \
+    ngeor/swagger-to-diagram swagger2png.sh \
+    swagger-input.yml diagram-output.png
+```

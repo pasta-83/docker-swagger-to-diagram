@@ -1,0 +1,18 @@
+sudo: required
+services:
+- docker
+script:
+- docker build -t ngeor/swagger-to-diagram:$TRAVIS_TAG .
+env:
+  global:
+  - secure: L/UbPYz4DA+ABzLGpW5cOlyyov4L2VBVurV2v5jbLV+pRIbO/DwUZ7u0fAemhGAcBnuzP8/YCjYy9WS8U1saTLTlv1wyPWFCtfEDDgKZZQ8PnUg3LdJUg6rG+upHhk9a44GMZmjI1AXIs05tEaC8wIWNNM2L4LUoZ90LOjzFyFvmem7kedv7ZiNOLaeiZ4W54zB1/oqs6XV9W7q4QDmq3AONoIiqA0uifQyFw2wsuFkVi8vT5Dpyax6QWP/7XGetBFuN09LqcmvHqsrJpymKwPm3NJzmIkkPkhliFovaJt3+agPXE/lKuSXpEP1ps41V0IRw7Il3IaOypOSjH93JdSBoqyxA+vhuFAeBEXNY44qAfMo/MlHBRVbvPlHEyn8Dl1Juu6xtOqNvXJYjNishATrXYHuY/osT3Y3MCEpVA0jRAszfeRB/z1V0fQhYinSOc0m00nKcAGQ3IC7SgZVj44WWg+h+K83TV94HVj06TtwztByVbt+uyUyUNAugMtOOEejlDO3SGioJiZ2p7iU0WvGn2/VkqD08IkIjRthrm7h9w2NNjc5z5YT3UJ7klPimMxmAIUXXOoYjyrOkzb3Xg9vvrhfJiSUE2Ia+UMo3pI2+yXlJxJsGXcfSHgPjL0G4RbaqclF57pMVJgsaB7pVGEMB8fktoOJ73r+oo6p34hk=
+  - secure: hRuw10POImtR3YJZP8nmxEq9P8KqnQJlpWkMogDUythWAAq/9VkcICANg7fOh+ico2hiSg7sX5TsQ6srn/OPRsMQxP7XMJGgeGgwugNSd4MbhE7xQ6HNgdkUWuY4i24PJWPO4lCT3Vlcx6LFUd7J6EThIFL34UDfb2pARnoS571JFqrJEvwLYVGcaV+FnVD0Tv6Ty4q3qLvdW4AeTlOARUsurmNkp3FF+og4ZcGqMsEwHLHv+JaB5Hupa6G1cazagokpupfkBBHNs189m22zHudWCrj6DI5I8hnnndvcNLzYFrU2yVr/fvIS8dwYw1Dnsfx5gg/mLZ/2VI//i0cw1Xz5uyCIUqj13acirvbXpVRoTRIL24tlv6NjNzRoIGRPQd4R8dv5T01vQAT0c6+AzE1HZFDCXdDKyLnbH2w2iMuUe57dWpeASomzpz9dnhtPXQtgiFyuBUc9RWRvFCpiFhah66H9VW7tR+YU88qeYfXRu5MMyeKnbOXe4qOXCcsL7IxY9x5X9XoFTde48rrnqMHuvPilEgPXuakSVL0aXi1hxGdIU+Mlrs20ABy4gtpwfT3q2VDkX3nBbdhqTTsCT+c8gvjxW3QKzI7MRIpRn6YQtxqQ0C1uy6h+ijrjxBubIMyIXpZ5LxS9MdFkoM5d5Bcch7GZ+YtpuAMrCrj+lec=
+deploy:
+  provider: script
+  script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag ngeor/swagger-to-diagram:$TRAVIS_TAG ngeor/swagger-to-diagram
+  - docker push ngeor/swagger-to-diagram
+  - docker logout
+  on:
+    tags: true
