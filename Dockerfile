@@ -10,8 +10,8 @@ RUN curl -s -o /usr/local/bin/requirements.txt https://raw.githubusercontent.com
 RUN pip3 install -r /usr/local/bin/requirements.txt && rm /usr/local/bin/requirements.txt
 RUN curl -s -o /usr/local/bin/swagger_to_uml.py https://raw.githubusercontent.com/nlohmann/swagger_to_uml/master/swagger_to_uml.py
 RUN curl -s -o /usr/local/bin/plantuml.jar https://netix.dl.sourceforge.net/project/plantuml/plantuml.jar
-COPY swagger2png.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/swagger2png.sh
+COPY *.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/*.sh
 
 RUN mkdir /data
 WORKDIR /data

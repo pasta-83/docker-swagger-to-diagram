@@ -10,3 +10,17 @@ docker run --rm -v $PWD:/data \
     ngeor/swagger-to-diagram swagger2png.sh \
     swagger-input.yml diagram-output.png
 ```
+
+You can also publish the page to Confluence Cloud with a different script
+which is baked into the image:
+
+```
+docker run --rm -v $PWD:/data \
+    ngeor/swagger-to-diagram put-confluence-attachement.sh \
+    --username confuence-username \
+    --password confluence-password \
+    --filename path-to-file.png \
+    --comment "comment for describing changes" \
+    --domain confluence-cloud-domain-without-atlassian.net \
+    --content-id "the id of the page to put the attachment in"
+```
