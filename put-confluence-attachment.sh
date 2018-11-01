@@ -6,11 +6,8 @@
 #
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
-    --username )
-        shift; USERNAME=$1
-        ;;
-    --password )
-        shift; PASSWORD=$1
+    -u )
+        shift; BASIC_AUTH=$1
         ;;
     --filename )
         shift; FILENAME=$1
@@ -27,13 +24,8 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
 esac; shift; done
 if [[ "$1" == '--' ]]; then shift; fi
 
-if [ -z "$USERNAME" ]; then
-    echo "Missing username"
-    exit 1
-fi
-
-if [ -z "$PASSWORD" ]; then
-    echo "Missing password"
+if [ -z "$BASIC_AUTH" ]; then
+    echo "Missing basic authentication parameter"
     exit 1
 fi
 
@@ -58,7 +50,7 @@ if [ -z "$CONTENT_ID" ]; then
 fi
 
 curl -D- \
-    -u $USERNAME:$PASSWORD \
+    -u $BASIC_AUTH \
     -X PUT \
     -H "X-Atlassian-Token: nocheck" \
     -F "file=@$FILENAME" \

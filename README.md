@@ -17,8 +17,7 @@ which is baked into the image:
 ```
 docker run --rm -v $PWD:/data \
     ngeor/swagger-to-diagram put-confluence-attachement.sh \
-    --username confuence-username \
-    --password confluence-password \
+    -u confuence-username:confluence-password \
     --filename path-to-file.png \
     --comment "comment for describing changes" \
     --domain confluence-cloud-domain-without-atlassian.net \
