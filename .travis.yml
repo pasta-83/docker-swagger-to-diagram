@@ -9,10 +9,6 @@ env:
   - secure: hRuw10POImtR3YJZP8nmxEq9P8KqnQJlpWkMogDUythWAAq/9VkcICANg7fOh+ico2hiSg7sX5TsQ6srn/OPRsMQxP7XMJGgeGgwugNSd4MbhE7xQ6HNgdkUWuY4i24PJWPO4lCT3Vlcx6LFUd7J6EThIFL34UDfb2pARnoS571JFqrJEvwLYVGcaV+FnVD0Tv6Ty4q3qLvdW4AeTlOARUsurmNkp3FF+og4ZcGqMsEwHLHv+JaB5Hupa6G1cazagokpupfkBBHNs189m22zHudWCrj6DI5I8hnnndvcNLzYFrU2yVr/fvIS8dwYw1Dnsfx5gg/mLZ/2VI//i0cw1Xz5uyCIUqj13acirvbXpVRoTRIL24tlv6NjNzRoIGRPQd4R8dv5T01vQAT0c6+AzE1HZFDCXdDKyLnbH2w2iMuUe57dWpeASomzpz9dnhtPXQtgiFyuBUc9RWRvFCpiFhah66H9VW7tR+YU88qeYfXRu5MMyeKnbOXe4qOXCcsL7IxY9x5X9XoFTde48rrnqMHuvPilEgPXuakSVL0aXi1hxGdIU+Mlrs20ABy4gtpwfT3q2VDkX3nBbdhqTTsCT+c8gvjxW3QKzI7MRIpRn6YQtxqQ0C1uy6h+ijrjxBubIMyIXpZ5LxS9MdFkoM5d5Bcch7GZ+YtpuAMrCrj+lec=
 deploy:
   provider: script
-  script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker tag ngeor/swagger-to-diagram ngeor/swagger-to-diagram:$TRAVIS_TAG
-  - docker push ngeor/swagger-to-diagram
-  - docker logout
+  script: ./deploy.sh
   on:
     tags: true
