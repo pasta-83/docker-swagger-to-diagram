@@ -12,6 +12,7 @@ RUN curl -s -o /usr/local/bin/swagger_to_uml.py https://raw.githubusercontent.co
 RUN curl -s -o /usr/local/bin/plantuml.jar https://netix.dl.sourceforge.net/project/plantuml/plantuml.jar
 COPY *.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/*.sh
-USER 1001
+
 RUN mkdir /data
 WORKDIR /data
+USER 1001
