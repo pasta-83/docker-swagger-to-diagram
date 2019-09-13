@@ -1,5 +1,5 @@
 FROM openjdk:11-jre-slim
-
+USER 1001
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" \
     apt-get install curl python3 python3-pip graphviz -y \
