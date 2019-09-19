@@ -15,4 +15,3 @@ RUN chmod +x /usr/local/bin/*.sh
 
 RUN mkdir /data
 WORKDIR /data
-USER 1001
